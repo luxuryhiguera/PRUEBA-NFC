@@ -25,6 +25,13 @@
   </style>
 </head>
 <body>
-  <h2>Introduce la clave para activar</h2>
-  <input t
 
+  <h2>Introduce la clave para activar</h2>
+  <input type="password" id="clave" placeholder="Clave">
+  <button onclick="verificarClave()">Activar</button>
+  <div class="error" id="mensajeError"></div>
+
+  <script>
+    function verificarClave() {
+      const claveCorrecta = "1234"; // Puedes cambiarla aquí
+      const webhookURL = "https://maker.ifttt.com/trigger/PRUEBA%20NFC/with/key/iv2ZACtT
