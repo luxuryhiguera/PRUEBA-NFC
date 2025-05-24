@@ -1,75 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casas Pinar del Edén</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-            background: linear-gradient(to bottom, #c2923a, #a76a11);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casas Pinar del Edén</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #ff914d, #ff5e62);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-        h1 {
-            color: white;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
+    h1 {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 2rem;
+    }
 
-        .button {
-            background-color: #fff5aa;
-            border: none;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px 0;
-            font-size: 1.2em;
-            font-weight: bold;
-            width: 80%;
-            text-align: center;
-            color: #2b2b2b;
-            text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            transition: background-color 0.3s ease;
-        }
+    .button {
+      width: 100%;
+      max-width: 320px;
+      padding: 15px;
+      margin: 10px 0;
+      background-color: white;
+      color: #ff5e62;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-        .button:hover {
-            background-color: #ffec70;
-        }
+    .button:hover {
+      background-color: #f0f0f0;
+    }
 
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            color: white;
-            font-size: 0.9em;
-            text-align: center;
-        }
-    </style>
+    .footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 20px 0;
+    }
+
+    iframe {
+      margin-top: 15px;
+      width: 100%;
+      max-width: 480px;
+      height: 220px;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Casas Pinar del Edén</h1>
+  <h1>Casas Pinar del Edén</h1>
 
-    <a href="https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr" class="button" target="_blank">
-        Apertura Garaje / Garage Opening
-    </a>
+  <button class="button" onclick="abrirGaraje()">Apertura Garaje / Garage Opening</button>
+  <button class="button" onclick="mostrarVideo('es')">Video Fuego Reunión</button>
+  <button class="button" onclick="mostrarVideo('en')">Video Fire Assembly</button>
 
-    <a href="https://www.youtube.com/watch?v=MedNGd7zjHU" class="button" target="_blank">
-        Video Fuego Reunión
-    </a>
+  <div id="videoContainer"></div>
 
-    <a href="https://www.youtube.com/watch?v=rVJqESuvDik" class="button" target="_blank">
-        Video Fire Assembly
-    </a>
+  <div class="footer">
+    📞 636 25 67 98 (<strong>Carmen</strong>)<br />
+    © 2025 Casas Pinar del Edén
+  </div>
 
-    <footer>
-        &copy; 2025 Casas Pinar del Edén
-    </footer>
+  <script>
+    function abrirGaraje() {
+      fetch('https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr')
+        .then(() => alert('✅ Apertura del garaje enviada correctamente.'))
+        .catch(() => alert('❌ Error al intentar abrir el garaje.'));
+    }
+
+    function mostrarVideo(idioma) {
+      const videoContainer = document.getElementById('videoContainer');
+      let videoSrc = '';
+
+      if (idioma === 'es') {
+        videoSrc = 'https://www.youtube.com/embed/MedNGd7zjHU';
+      } else if (idioma === 'en') {
+        videoSrc = 'https://www.youtube.com/embed/rVJqESuvDik';
+      }
+
+      videoContainer.innerHTML = `<iframe src="${videoSrc}" allowfullscreen></iframe>`;
+    }
+  </script>
 </body>
 </html>
