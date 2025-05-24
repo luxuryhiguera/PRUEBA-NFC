@@ -15,6 +15,7 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
+      box-sizing: border-box;
     }
 
     h1 {
@@ -43,19 +44,27 @@
     }
 
     .footer {
-      margin-top: auto;
+      margin-top: 20px;
       text-align: center;
-      font-size: 0.9rem;
-      padding: 20px 0;
+      font-size: 1rem;
+    }
+
+    .footer strong {
+      font-size: 1.1rem;
     }
 
     iframe {
       margin-top: 15px;
       width: 100%;
       max-width: 480px;
-      height: 220px;
+      height: 180px;
       border: none;
       border-radius: 10px;
+    }
+
+    #videoContainer {
+      width: 100%;
+      max-width: 480px;
     }
   </style>
 </head>
@@ -69,15 +78,17 @@
   <div id="videoContainer"></div>
 
   <div class="footer">
-    📞 636 25 67 98 (<strong>Carmen</strong>)<br />
+    📞 <strong>636 25 67 98 (Carmen)</strong><br />
     © 2025 Casas Pinar del Edén
   </div>
 
   <script>
     function abrirGaraje() {
       fetch('https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr')
-        .then(() => alert('✅ Apertura del garaje enviada correctamente.'))
-        .catch(() => alert('❌ Error al intentar abrir el garaje.'));
+        .then(() => {
+          alert('✅ Apertura del garaje enviada.');
+        });
+        // Eliminamos el .catch() para evitar alertas engañosas.
     }
 
     function mostrarVideo(idioma) {
