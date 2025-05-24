@@ -1,50 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>APERTURA PUERTA GARAJE LUXURY</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casas Pinar del Edén</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(to bottom, #c2923a, #a76a11);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .button {
+            background-color: #fff5aa;
+            border: none;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            width: 80%;
+            text-align: center;
+            color: #2b2b2b;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #ffec70;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            color: white;
+            font-size: 0.9em;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <h1>Casas Pinar del Edén</h1>
 
-  <h2>Introduce la clave para activar</h2>
-  <input type="password" id="clave" placeholder="Clave">
-  <button onclick="verificarClave()">Activar</button>
-  <div class="error" id="mensajeError"></div>
+    <a href="https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr" class="button" target="_blank">
+        Apertura Garaje / Garage Opening
+    </a>
 
-  <script>
-    function verificarClave() {
-      const claveCorrecta = "2211"; // Puedes cambiarla aquí
-      const webhookURL = "https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr"
-   const entrada = document.getElementById("clave").value;
-      const mensajeError = document.getElementById("mensajeError");
+    <a href="https://www.youtube.com/watch?v=MedNGd7zjHU" class="button" target="_blank">
+        Video Fuego Reunión
+    </a>
 
-      if (entrada === claveCorrecta) {
-        window.location.href = webhookURL;
-      } else {
-        mensajeError.textContent = "Clave incorrecta. Intenta de nuevo.";
-      }
-    }
-  </script>
+    <a href="https://www.youtube.com/watch?v=rVJqESuvDik" class="button" target="_blank">
+        Video Fire Assembly
+    </a>
 
+    <footer>
+        &copy; 2025 Casas Pinar del Edén
+    </footer>
 </body>
 </html>
