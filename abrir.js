@@ -11,16 +11,22 @@ function validarClave() {
   const claveIngresada = document.getElementById("claveInput").value;
 
   if (claveIngresada === claveCorrecta) {
-    fetch("https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr")
-      .then(() => {
-        document.getElementById('formulario-apertura').innerHTML = `<p style="color: lime;">✅ Puerta abierta correctamente</p>`;
-      })
-      .catch(() => {
-        document.getElementById('formulario-apertura').innerHTML = `<p style="color: orange;">⚠️ Error al comunicar con el sistema</p>`;
-      });
+    // Ocultar mensaje de error si estaba visible
+    document.getElementById("mensaje-error").style.display = "none";
+
+    fetch("https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr", {
+      mode: 'no-cors'
+    })
+    .then(() => {
+      document.getElementById('formulario-apertura').innerHTML = `<p style="color: lime;">✅ Puerta abierta correctamente</p>`;
+    })
+    .catch(() => {
+      // En caso de fallo extremo de red
+      document.getElementById('formulario-apertura').innerHTML = `<p style="color: red;">⚠️ No se pudo comunicar con el sistema</p>`;
+    });
   } else {
     document.getElementById("mensaje-error").style.display = "block";
   }
 
-  return false; // Prevenir recarga de la página
+  return false; // Prevenir envío del formulario
 }
