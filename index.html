@@ -1,108 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casas Pinar del Edén</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casas Pinar del Eden</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #ff914d, #ff5e62);
+      background: linear-gradient(to bottom right, #4a90e2, #145388);
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+    }
+    header {
       padding: 20px;
-      box-sizing: border-box;
-    }
-
-    h1 {
-      margin-top: 20px;
       text-align: center;
-      font-size: 2rem;
-    }
-
-    .button {
-      width: 100%;
-      max-width: 320px;
-      padding: 15px;
-      margin: 10px 0;
-      background-color: white;
-      color: #ff5e62;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
+      font-size: 1.6em;
       font-weight: bold;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;
+      width: 90%;
+    }
+    button {
+      background-color: white;
+      color: #145388;
+      font-size: 1em;
+      font-weight: bold;
+      padding: 15px 25px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
       cursor: pointer;
       transition: background-color 0.3s;
     }
-
-    .button:hover {
-      background-color: #f0f0f0;
+    button:hover {
+      background-color: #e6e6e6;
     }
-
-    .footer {
+    iframe {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+      margin-top: auto;
+    }
+    #formulario-apertura {
       margin-top: 20px;
       text-align: center;
-      font-size: 1rem;
     }
-
-    .footer strong {
-      font-size: 1.1rem;
-    }
-
-    iframe {
-      margin-top: 15px;
-      width: 100%;
-      max-width: 480px;
-      height: 180px;
-      border: none;
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
       border-radius: 10px;
-    }
-
-    #videoContainer {
-      width: 100%;
-      max-width: 480px;
+      border: none;
+      width: 80%;
+      max-width: 300px;
     }
   </style>
 </head>
 <body>
-  <h1>Casas Pinar del Edén</h1>
 
-  <button class="button" onclick="abrirGaraje()">Apertura Garaje / Garage Opening</button>
-  <button class="button" onclick="mostrarVideo('es')">Video Fuego Reunión</button>
-  <button class="button" onclick="mostrarVideo('en')">Video Fire Assembly</button>
+  <header>Casas Pinar del Eden</header>
 
-  <div id="videoContainer"></div>
+  <main>
+    <button onclick="mostrarFormularioClave()">Apertura Garaje / Garage Opening</button>
+    <div id="formulario-apertura"></div>
 
-  <div class="footer">
-    📞 <strong>636 25 67 98 (Carmen)</strong><br />
-    © 2025 Casas Pinar del Edén
-  </div>
+    <button onclick="verVideo('ES')">Video Fuego Reunión</button>
+    <button onclick="verVideo('EN')">Video Fire Assembly</button>
+
+    <div id="video-container"></div>
+  </main>
+
+  <footer>
+    📞 636 25 67 98 (Carmen)<br>
+    © 2025 Casas Pinar del Eden
+  </footer>
 
   <script>
-    function abrirGaraje() {
-      fetch('https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr')
-        .then(() => {
-          alert('✅ Apertura del garaje enviada.');
-        });
-        // Eliminamos el .catch() para evitar alertas engañosas.
+    function mostrarFormularioClave() {
+      if (!document.getElementById('clave-apertura')) {
+        const script = document.createElement('script');
+        script.src = 'abrir.js';
+        document.body.appendChild(script);
+      }
     }
 
-    function mostrarVideo(idioma) {
-      const videoContainer = document.getElementById('videoContainer');
-      let videoSrc = '';
+    function verVideo(idioma) {
+      const videoContainer = document.getElementById("video-container");
+      let url = "";
 
-      if (idioma === 'es') {
-        videoSrc = 'https://www.youtube.com/embed/MedNGd7zjHU';
-      } else if (idioma === 'en') {
-        videoSrc = 'https://www.youtube.com/embed/rVJqESuvDik';
+      if (idioma === 'ES') {
+        url = "https://www.youtube.com/embed/MedNGd7zjHU";
+      } else if (idioma === 'EN') {
+        url = "https://www.youtube.com/embed/rVJqESuvDik";
       }
 
-      videoContainer.innerHTML = `<iframe src="${videoSrc}" allowfullscreen></iframe>`;
+      videoContainer.innerHTML = `<iframe src="${url}" allowfullscreen></iframe>`;
     }
   </script>
+
 </body>
 </html>
