@@ -1,21 +1,32 @@
-document.getElementById('abrirBoton').addEventListener('click', () => {
-    const clave = prompt("🔐 Introduce la clave para abrir el garaje:");
+document.getElementById('formulario-apertura').innerHTML = `
+  <form onsubmit="return validarClave()" id="clave-apertura">
+    <input type="password" id="claveInput" placeholder="Introduce la clave" required>
+    <button type="submit">Abrir</button>
+  </form>
+  <p id="mensaje-error" style="color: red; display: none;">❌ Clave incorrecta</p>
+`;
 
-    if (!clave) return;
+function validarClave() {
+  const claveCorrecta = "2211";
+  const claveIngresada = document.getElementById("claveInput").value;
 
-    fetch("https://hook.eu2.make.com/13gq3pjn6goem85f6z68qt9g9d6clxrf", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clave: clave })
+  if (claveIngresada === claveCorrecta) {
+    // Ocultar mensaje de error si estaba visible
+    document.getElementById("mensaje-error").style.display = "none";
+
+    fetch("https://maker.ifttt.com/trigger/PUERTA%20GARAJE%20OPEN/with/key/iv2ZACtTMRjhvhj0aPq-uMex_k6Xb9coxM0V8C2u7Wr", {
+      mode: 'no-cors'
     })
-    .then(res => {
-        if (res.ok) {
-            alert("✅ Puerta abierta correctamente.");
-        } else {
-            alert("❌ Clave incorrecta o error al validar.");
-        }
+    .then(() => {
+      document.getElementById('formulario-apertura').innerHTML = `<p style="color: lime;">✅ Puerta abierta correctamente</p>`;
     })
     .catch(() => {
-        alert("❌ Error de red o sistema.");
+      // En caso de fallo extremo de red
+      document.getElementById('formulario-apertura').innerHTML = `<p style="color: red;">⚠️ No se pudo comunicar con el sistema</p>`;
     });
-});
+  } else {
+    document.getElementById("mensaje-error").style.display = "block";
+  }
+
+  return false; // Prevenir envío del formulario
+}
